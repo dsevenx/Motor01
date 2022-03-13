@@ -1,22 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import useLocalStorage from "./basis_typen/useLocalStorage";
 
 function App() {
+  const [pollfnr, setPollfnr] = useLocalStorage("init");
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <p>Motor 01</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <input
+            type="text"
+            value={pollfnr}
+            onChange={(e) => setPollfnr(e.target.value)}
+          />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{pollfnr}</p>
       </header>
     </div>
   );
