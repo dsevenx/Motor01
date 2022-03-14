@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 
 function getSavedValue(key, initialValue) {
-  const savedValue = JSON.parse(localStorage.getItem(key));
+  const savedValuepur = localStorage.getItem(key);
+  if (savedValuepur) {
+    try {
+      const savedValue = JSON.parse(savedValuepur);
 
-  if (savedValue) {
-    return savedValue;
+      if (savedValue) {
+        return savedValue;
+      }
+    } catch (error) {}
   }
 
   return initialValue;
