@@ -17,3 +17,9 @@
   background-color: white;
   color: black;
 }
+
+.bestandsdaten_freiemerkmale {
+  line-height: 1.05em;
+  font-size: 0.7em;
+  color: rgb(00, 0, 0);
+}
