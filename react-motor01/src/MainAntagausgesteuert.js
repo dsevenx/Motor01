@@ -34,7 +34,8 @@ export class MainAntagausgesteuert extends Component {
         { label: "Motorrad", id: "KFZ0023" },
       ],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -47,7 +48,8 @@ export class MainAntagausgesteuert extends Component {
         { label: "Taxi", id: "KFZ006" },
       ],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -61,7 +63,8 @@ export class MainAntagausgesteuert extends Component {
         { label: "Audi", id: "0688" },
       ],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -71,7 +74,8 @@ export class MainAntagausgesteuert extends Component {
       "VORBELFIN",
       [],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -81,7 +85,8 @@ export class MainAntagausgesteuert extends Component {
       "M-lk 123",
       [],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -96,7 +101,8 @@ export class MainAntagausgesteuert extends Component {
         { label: "Weimar", id: "117755" },
       ],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -106,7 +112,8 @@ export class MainAntagausgesteuert extends Component {
       "2020-03-03",
       [],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
     );
 
     hinzuBOContainer(
@@ -116,14 +123,25 @@ export class MainAntagausgesteuert extends Component {
       "2021-04-04",
       [],
       false,
-      this.setBONeu
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_FAHRZEUGZULASSUNG,
+      BONamen.K_E_KENNZEICHN_PRUEFEN,
+      "",
+      [],
+      false,
+      this.setBONeu,
+      true
     );
 
     this.setState({ BoContainer: lContainer });
   }
 
   setBONeu(grname, name, value) {
-    // 1. Make a shallow copy of the items
     let BoContainer_neu = [...this.state.BoContainer];
 
     const itemIndex = BoContainer_neu.findIndex(
@@ -131,25 +149,31 @@ export class MainAntagausgesteuert extends Component {
     );
 
     if (itemIndex > -1) {
-      // 2. Make a shallow copy of the item you want to mutate
-
       const BOEinzelNeu = new BOEinzeln(
         BoContainer_neu[itemIndex].grname,
         BoContainer_neu[itemIndex].name,
         value,
         BoContainer_neu[itemIndex].options,
         BoContainer_neu[itemIndex].disabled,
-        BoContainer_neu[itemIndex].setBONeu
+        BoContainer_neu[itemIndex].setBONeu,
+        BoContainer_neu[itemIndex].janein
       );
 
-      // 3. Replace the property you're intested in
-      BOEinzelNeu.value = value;
-      BOEinzelNeu.eingabe_value = value;
+      if (BoContainer_neu[itemIndex].janein === true) {
+        if (BoContainer_neu[itemIndex].value === "on") {
+          BOEinzelNeu.value = "off";
+          BOEinzelNeu.eingabe_value = "off";
+        } else {
+          BOEinzelNeu.value = "on";
+          BOEinzelNeu.eingabe_value = "on";
+        }
+      } else {
+        BOEinzelNeu.value = value;
+        BOEinzelNeu.eingabe_value = value;
+      }
 
-      // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
       BoContainer_neu[itemIndex] = BOEinzelNeu;
 
-      // 5. Set the state to our new copy
       this.setState({ BoContainer: BoContainer_neu });
     }
   }

@@ -9,6 +9,7 @@ const BONamen = {
   K_E_KGS: "Zulassungsbezirk",
   K_E_ANMELDEDATUM: "Anmeldedatum",
   K_E_ERSTZULDATUM: "Erstzulassungsdatum",
+  K_E_KENNZEICHN_PRUEFEN: "Kennzeichen prüfen",
 
   // Gruppen
   K_GR_FAHRZEUGDATEN: "Fahrzeugdaten",

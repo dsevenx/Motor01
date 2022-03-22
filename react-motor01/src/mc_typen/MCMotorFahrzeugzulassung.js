@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import MotorComboBox from "../basis_typen/MotorComboBox";
 import MotorTextField from "../basis_typen/MotorTextField";
 import MotorDate from "../basis_typen/MotorDate";
+import MotorCheckBox from "../basis_typen/MotorCheckBox";
 
 import BONamen from "../BOs/BONamen";
 
@@ -30,6 +31,14 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 name={BONamen.K_E_KGS}
               />
             </Grid>
+            <Grid item xs={6}>
+              <MotorCheckBox
+                container={this.props.BoContainer}
+                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                name={BONamen.K_E_KENNZEICHN_PRUEFEN}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
             <Grid item xs={6}>
               <MotorDate
                 container={this.props.BoContainer}

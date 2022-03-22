@@ -7,7 +7,8 @@ export default function hinzuBOContainer(
   value,
   options,
   disabled,
-  setBONeu
+  setBONeu,
+  janein
 ) {
   const lBOEinzeln = new BOEinzeln(
     grname,
@@ -15,7 +16,8 @@ export default function hinzuBOContainer(
     value,
     options,
     disabled,
-    setBONeu
+    setBONeu,
+    janein
   );
 
   mBOconatiner.push(lBOEinzeln);

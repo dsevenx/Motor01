@@ -1,5 +1,5 @@
 export default class BOEinzeln {
-  constructor(grname, name, value, options, disable, setBONeu) {
+  constructor(grname, name, value, options, disable, setBONeu, janein) {
     this.grname = grname;
     this.name = name;
     this.value = value;
@@ -7,6 +7,7 @@ export default class BOEinzeln {
     this.disable = disable;
     this.eingabe_value = "";
     this.setBONeu = setBONeu;
+    this.janein = janein;
   }
 
   setValue(pValue) {
@@ -33,15 +34,35 @@ export default class BOEinzeln {
 
   getXMLText() {
     if (this.eingabe_value && this.eingabe_value !== "") {
-      return (
-        "<" +
-        this.name +
-        "_e eingabe='sba_eingegben>" +
-        this.eingabe_value +
-        "</" +
-        this.name +
-        "_e>"
-      );
+      if (this.janein) {
+        if (this.eingabe_value === "on") {
+          return (
+            "<" +
+            this.name +
+            "_e eingabe='sba_eingegben>J</" +
+            this.name +
+            "_e>"
+          );
+        } else {
+          return (
+            "<" +
+            this.name +
+            "_e eingabe='sba_eingegben>N</" +
+            this.name +
+            "_e>"
+          );
+        }
+      } else {
+        return (
+          "<" +
+          this.name +
+          "_e eingabe='sba_eingegben>" +
+          this.eingabe_value +
+          "</" +
+          this.name +
+          "_e>"
+        );
+      }
     }
     return "";
   }
