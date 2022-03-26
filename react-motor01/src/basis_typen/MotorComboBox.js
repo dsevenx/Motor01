@@ -5,14 +5,20 @@ import lieferElementBOContainer from "../BOs/lieferElementBOContainer";
 
 export default function MotorComboBox(props) {
   if (props && props.container && props.name && props.grname) {
+    let lZeilenID = "";
+    if (props.zeilenid) {
+      lZeilenID = props.zeilenid;
+    }
+
     const lBO = lieferElementBOContainer(
       props.container,
       props.grname,
-      props.name
+      props.name,
+      lZeilenID
     );
 
     if (lBO) {
-      let lID = lBO.getGrname() + lBO.getName();
+      let lID = lBO.getGrname() + lBO.getName() + lZeilenID;
 
       return (
         <Autocomplete

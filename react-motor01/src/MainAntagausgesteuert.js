@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import MotorAppBar from "./basis_typen/MotorAppBar";
+import MotorAppBar from "./allg_func/MotorAppBar";
 import MCMotorFahrzeugdaten from "./mc_typen/MCMotorFahrzeugdaten";
 import MCMotorFahrzeugzulassung from "./mc_typen/MCMotorFahrzeugzulassung";
+import SGMotorKilometerstand from "./sg_typen/SGMotorKilometerstand";
 import hinzuBOContainer from "./BOs/hinzuBOContainer";
 import { Container, Row } from "react-bootstrap";
 
@@ -26,6 +27,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FAHRZEUGART,
+      "",
       "KFZ0001",
       [
         { label: "PKW", id: "KFZ0001" },
@@ -42,6 +44,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FAHRZEUGVERWENDUNG,
+      "",
       "KFZ001",
       [
         { label: "ohne Vermiertung", id: "KFZ001" },
@@ -56,6 +59,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_HSN,
+      "",
       "0005",
       [
         { label: "BMW", id: "0005" },
@@ -71,6 +75,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FIN,
+      "",
       "VORBELFIN",
       [],
       false,
@@ -82,6 +87,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_AMTL_KENNZEICHEN,
+      "",
       "M-lk 123",
       [],
       false,
@@ -93,6 +99,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_KGS,
+      "",
       "110000",
       [
         { label: "Berlin", id: "110000" },
@@ -109,6 +116,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_ERSTZULDATUM,
+      "",
       "2020-03-03",
       [],
       false,
@@ -120,6 +128,7 @@ export class MainAntagausgesteuert extends Component {
       lContainer,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_ANMELDEDATUM,
+      "",
       "2021-04-04",
       [],
       false,
@@ -132,26 +141,114 @@ export class MainAntagausgesteuert extends Component {
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_KENNZEICHN_PRUEFEN,
       "",
+      "",
       [],
       false,
       this.setBONeu,
       true
     );
 
+    /// KM-Satnd
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTANDSGRUND,
+      "7000",
+      "1",
+      [
+        { label: "Bitte wählen", id: "0" },
+        { label: "Versicherungsbeginn", id: "1" },
+        { label: "KM-Meldung", id: "2" },
+        { label: "Antragsmeldung", id: "6" },
+      ],
+      false,
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTANDSDATUM,
+      "7000",
+      "2021-04-05",
+      [],
+      false,
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTAND,
+      "7000",
+      "1122",
+      [],
+      false,
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTANDSGRUND,
+      "7001",
+      "2",
+      [
+        { label: "Bitte wählen", id: "0" },
+        { label: "Versicherungsbeginn", id: "1" },
+        { label: "KM-Meldung", id: "2" },
+        { label: "Antragsmeldung", id: "6" },
+      ],
+      false,
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTANDSDATUM,
+      "7001",
+      "2021-04-15",
+      [],
+      false,
+      this.setBONeu,
+      false
+    );
+
+    hinzuBOContainer(
+      lContainer,
+      BONamen.K_GR_KILOMETERSTANDSANGABEN,
+      BONamen.K_E_KILOMETERSTAND,
+      "7001",
+      "11221",
+      [],
+      false,
+      this.setBONeu,
+      false
+    );
+
     this.setState({ BoContainer: lContainer });
   }
 
-  setBONeu(grname, name, value) {
+  setBONeu(grname, name, zeilenid, value) {
     let BoContainer_neu = [...this.state.BoContainer];
 
     const itemIndex = BoContainer_neu.findIndex(
-      (item) => item.grname === grname && item.name === name
+      (item) =>
+        item.grname === grname &&
+        item.name === name &&
+        item.zeilenid === zeilenid
     );
 
     if (itemIndex > -1) {
       const BOEinzelNeu = new BOEinzeln(
         BoContainer_neu[itemIndex].grname,
         BoContainer_neu[itemIndex].name,
+        BoContainer_neu[itemIndex].zeilenid,
         value,
         BoContainer_neu[itemIndex].options,
         BoContainer_neu[itemIndex].disabled,
@@ -185,10 +282,22 @@ export class MainAntagausgesteuert extends Component {
         {this.state.LastUpdateElement}
         <Container fluid>
           <Row>
-            <MCMotorFahrzeugdaten BoContainer={this.state.BoContainer} />
+            <MCMotorFahrzeugdaten
+              BoContainer={this.state.BoContainer}
+              grname={BONamen.K_GR_FAHRZEUGDATEN}
+            />
           </Row>
           <Row>
-            <MCMotorFahrzeugzulassung BoContainer={this.state.BoContainer} />
+            <MCMotorFahrzeugzulassung
+              BoContainer={this.state.BoContainer}
+              grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+            />
+          </Row>
+          <Row>
+            <SGMotorKilometerstand
+              BoContainer={this.state.BoContainer}
+              grname={BONamen.K_GR_KILOMETERSTANDSANGABEN}
+            />
           </Row>
         </Container>
         <Container fluid>

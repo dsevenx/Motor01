@@ -1,3 +1,100 @@
+ import React from "react";
+
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+import MotorTable from "../basis_typen/MotorTable";
+
+import BONamen from "../BOs/BONamen";
+
+export class SGMotorKilometerstand extends React.Component {
+  render() {
+      if (props && props.container && props.name && props.grname) {
+        const lBO = lieferElementBOContainer(
+          props.container,
+          props.grname,
+          props.name
+        );
+
+        let lID = lBO.getGrname() + lBO.getName();
+
+        if (lBO) {
+      return (
+        <Box sx={{ flexGrow: 1 }}>
+          {lID}
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Angabegrund</TableCell>
+                      <TableCell align="right">
+                        Datum des Kilometestands
+                      </TableCell>
+                      <TableCell align="right">Kilometerstandswert</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {lBO.getZeilen().map((zelle) => (
+                      <TableRow
+                        key={zelle.name}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          <MotorComboBox
+                            container={lBO}
+                            grname={BONamen.K_GR_KILOMETERSTAND}
+                            name="Grund"
+                          />
+                        </TableCell>
+                        <TableCell align="right">
+                          {" "}
+                          <MotorDate
+                            container={this.props.BoContainer}
+                            grname={BONamen.K_GR_KILOMETERSTAND}
+                            name="Datum"
+                          />
+                        </TableCell>
+                        <TableCell align="right">
+                          <MotorTextField
+                            container={this.props.BoContainer}
+                            grname={BONamen.K_GR_KILOMETERSTAND}
+                            name="Km-Stand"
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+          </Grid>
+        </Box>
+      );
+    }
+
+    return <div></div>;
+  }
+}
+
+export default SGMotorKilometerstand;
+
+ 
+ <Row>
+            <SGMotorKilometerstand BoContainer={this.state.BoContainer} />
+          </Row>
+
+
 import "./App.css";
 import useLocalStorage from "./basis_typen/useLocalStorage";
 import {

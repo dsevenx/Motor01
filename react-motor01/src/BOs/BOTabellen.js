@@ -1,27 +1,14 @@
-export default class BOEinzeln {
-  constructor(
-    grname,
-    name,
-    zeilenid,
-    value,
-    options,
-    disable,
-    setBONeu,
-    janein
-  ) {
+export default class BOTabellen {
+  constructor(grname, name, ueberschriften, disable, BOEinzeln) {
     this.grname = grname;
     this.name = name;
-    this.zeilenid = zeilenid;
-    this.value = value;
-    this.options = options;
+    this.ueberschriften = ueberschriften;
     this.disable = disable;
-    this.eingabe_value = "";
-    this.setBONeu = setBONeu;
-    this.janein = janein;
+    this.BOEinzeln = BOEinzeln;
   }
 
   setValue(pValue) {
-    this.setBONeu(this.grname, this.name, this.zeilenid, pValue);
+    this.setValue(this.grname, this.name, pValue);
   }
 
   getGrname() {
@@ -30,16 +17,6 @@ export default class BOEinzeln {
 
   getName() {
     return this.name;
-  }
-
-  getGuiZuValue() {
-    let lWert = this.options.find((x) => x.id === this.value);
-
-    if (lWert) {
-      return lWert.label;
-    }
-
-    return "";
   }
 
   getXMLText() {
@@ -75,8 +52,5 @@ export default class BOEinzeln {
       }
     }
     return "";
-  }
-  getOptions() {
-    return this.options;
   }
 }

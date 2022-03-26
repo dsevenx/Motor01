@@ -10,36 +10,36 @@ import BONamen from "../BOs/BONamen";
 
 export class MCMotorFahrzeugdaten extends React.Component {
   render() {
-    if (this.props.BoContainer) {
+    if (this.props.BoContainer && this.props.grname) {
       return (
         <Box sx={{ flexGrow: 1 }}>
-          Fahrzeugdaten
+          {this.props.grname}
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <MotorComboBox
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGDATEN}
+                grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGART}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorComboBox
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGDATEN}
+                grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGVERWENDUNG}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorComboBox
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGDATEN}
+                grname={this.props.grname}
                 name={BONamen.K_E_HSN}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorTextField
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGDATEN}
+                grname={this.props.grname}
                 name={BONamen.K_E_FIN}
               />
             </Grid>

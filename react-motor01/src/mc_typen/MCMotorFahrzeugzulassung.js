@@ -12,7 +12,7 @@ import BONamen from "../BOs/BONamen";
 
 export class MCMotorFahrzeugzulassung extends React.Component {
   render() {
-    if (this.props.BoContainer) {
+    if (this.props.BoContainer && this.props.grname) {
       return (
         <Box sx={{ flexGrow: 1 }}>
           Fahrzeugzulassung
@@ -20,21 +20,21 @@ export class MCMotorFahrzeugzulassung extends React.Component {
             <Grid item xs={6}>
               <MotorTextField
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                grname={this.props.grname}
                 name={BONamen.K_E_AMTL_KENNZEICHEN}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorComboBox
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                grname={this.props.grname}
                 name={BONamen.K_E_KGS}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorCheckBox
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                grname={this.props.grname}
                 name={BONamen.K_E_KENNZEICHN_PRUEFEN}
               />
             </Grid>
@@ -42,14 +42,14 @@ export class MCMotorFahrzeugzulassung extends React.Component {
             <Grid item xs={6}>
               <MotorDate
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                grname={this.props.grname}
                 name={BONamen.K_E_ANMELDEDATUM}
               />
             </Grid>
             <Grid item xs={6}>
               <MotorDate
                 container={this.props.BoContainer}
-                grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+                grname={this.props.grname}
                 name={BONamen.K_E_ERSTZULDATUM}
               />
             </Grid>
