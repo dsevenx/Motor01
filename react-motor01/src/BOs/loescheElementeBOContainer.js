@@ -5,7 +5,7 @@ export default function loescheElementeBOContainer(
   setBOContainerNeuInState
 ) {
   let lBOs = mBOconatiner.filter(
-    (x) => x.grname === grname && x.zeilenid === zeilenid
+    (x) => x.grname !== grname || x.zeilenid !== zeilenid
   );
 
   if (lBOs) {

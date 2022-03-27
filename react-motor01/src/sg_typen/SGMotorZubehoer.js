@@ -120,10 +120,12 @@ export class SGMotorZubehoer extends React.Component {
                           </TableCell>
                         </TableRow>
                       ))}
+                      <Button variant="contained">
+                        ein Zubehör hinzufügen
+                      </Button>
                     </TableBody>
                   </Table>
                 </TableContainer>
-                <Button variant="contained">ein Zubehör hinzufügen</Button>
               </Grid>
             </Grid>
           </Box>
