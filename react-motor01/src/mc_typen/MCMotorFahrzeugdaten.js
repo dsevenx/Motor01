@@ -20,6 +20,7 @@ export class MCMotorFahrzeugdaten extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGART}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -27,6 +28,7 @@ export class MCMotorFahrzeugdaten extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGVERWENDUNG}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -34,6 +36,7 @@ export class MCMotorFahrzeugdaten extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_HSN}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -41,6 +44,7 @@ export class MCMotorFahrzeugdaten extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FIN}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
           </Grid>

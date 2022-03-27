@@ -1,14 +1,5 @@
 export default class BOEinzeln {
-  constructor(
-    grname,
-    name,
-    zeilenid,
-    value,
-    options,
-    disable,
-    setBONeu,
-    janein
-  ) {
+  constructor(grname, name, zeilenid, value, options, disable, janein) {
     this.grname = grname;
     this.name = name;
     this.zeilenid = zeilenid;
@@ -16,12 +7,7 @@ export default class BOEinzeln {
     this.options = options;
     this.disable = disable;
     this.eingabe_value = "";
-    this.setBONeu = setBONeu;
     this.janein = janein;
-  }
-
-  setValue(pValue) {
-    this.setBONeu(this.grname, this.name, this.zeilenid, pValue);
   }
 
   getGrname() {

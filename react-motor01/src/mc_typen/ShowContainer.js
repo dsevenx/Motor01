@@ -19,7 +19,7 @@ export class ShowContainer extends React.Component {
           </thead>
           <tbody>
             {this.props.BoContainer.map((lBO) => (
-              <tr key={lBO.grname + lBO.name}>
+              <tr key={lBO.grname + lBO.name + lBO.zeilenid}>
                 <td>{lBO.grname}</td>
                 <td>{lBO.name}</td>
                 <td>{lBO.value}</td>

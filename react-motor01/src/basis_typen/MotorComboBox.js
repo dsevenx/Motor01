@@ -2,6 +2,8 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import lieferElementBOContainer from "../BOs/lieferElementBOContainer";
+import aktualisiereBOContainer from "../BOs/aktualisiereBOContainer";
+import BOAktion from "../BOs/BOAktion";
 
 export default function MotorComboBox(props) {
   if (props && props.container && props.name && props.grname) {
@@ -24,9 +26,26 @@ export default function MotorComboBox(props) {
         <Autocomplete
           disablePortal
           id={lID}
+          isOptionEqualToValue={(option, value) => {
+            if (value.id && option.id) {
+              return option.id === value.id;
+            }
+
+            return option.label === value;
+          }}
+          value={lBO.getGuiZuValue()}
           defaultValue={lBO.getGuiZuValue()}
           onChange={(event, newValue) => {
-            lBO.setValue(newValue.id);
+            let lContainerNeu = aktualisiereBOContainer(
+              props.container,
+              BOAktion.UPDATE,
+              props.grname,
+              props.name,
+              lZeilenID,
+              newValue.id
+            );
+
+            props.setBOContainerNeuInState(lContainerNeu);
           }}
           options={lBO.getOptions()}
           sx={{ width: 300 }}

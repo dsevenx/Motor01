@@ -2,6 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import lieferElementBOContainer from "../BOs/lieferElementBOContainer";
+import aktualisiereBOContainer from "../BOs/aktualisiereBOContainer";
+import BOAktion from "../BOs/BOAktion";
 
 export default function MotorCheckBox(props) {
   if (props && props.container && props.name && props.grname) {
@@ -30,10 +32,18 @@ export default function MotorCheckBox(props) {
           {lBO.getName()}{" "}
           <Checkbox
             id={lID}
-            {...lBO.getName()}
-            defaultChecked={lBO.value}
+            defaultChecked={lBO.value === "on" || lBO.value === "J"}
             onChange={(event) => {
-              lBO.setValue(event.target.value);
+              let lContainerNeu = aktualisiereBOContainer(
+                props.container,
+                BOAktion.UPDATE,
+                props.grname,
+                props.name,
+                lZeilenID,
+                event.target.value
+              );
+
+              props.setBOContainerNeuInState(lContainerNeu);
             }}
           />
         </Box>

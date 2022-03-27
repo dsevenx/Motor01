@@ -3,12 +3,13 @@ import MotorAppBar from "./allg_func/MotorAppBar";
 import MCMotorFahrzeugdaten from "./mc_typen/MCMotorFahrzeugdaten";
 import MCMotorFahrzeugzulassung from "./mc_typen/MCMotorFahrzeugzulassung";
 import SGMotorKilometerstand from "./sg_typen/SGMotorKilometerstand";
-import hinzuBOContainer from "./BOs/hinzuBOContainer";
+import SGMotorZubehoer from "./sg_typen/SGMotorZubehoer";
+import aktualisiereBOContainer from "./BOs/aktualisiereBOContainer";
 import { Container, Row } from "react-bootstrap";
 
 import BONamen from "./BOs/BONamen";
+import BOAktion from "./BOs/BOAktion";
 import ShowContainer from "./mc_typen/ShowContainer";
-import BOEinzeln from "./BOs/BOEinzeln";
 
 export class MainAntagausgesteuert extends Component {
   constructor(props) {
@@ -17,14 +18,15 @@ export class MainAntagausgesteuert extends Component {
       BoContainer: [],
     };
 
-    this.setBONeu = this.setBONeu.bind(this);
+    this.setBOContainerNeuInState = this.setBOContainerNeuInState.bind(this);
   }
 
   componentDidMount() {
     let lContainer = [];
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FAHRZEUGART,
       "",
@@ -36,12 +38,12 @@ export class MainAntagausgesteuert extends Component {
         { label: "Motorrad", id: "KFZ0023" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FAHRZEUGVERWENDUNG,
       "",
@@ -51,12 +53,12 @@ export class MainAntagausgesteuert extends Component {
         { label: "Taxi", id: "KFZ006" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_HSN,
       "",
@@ -67,36 +69,36 @@ export class MainAntagausgesteuert extends Component {
         { label: "Audi", id: "0688" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGDATEN,
       BONamen.K_E_FIN,
       "",
       "VORBELFIN",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_AMTL_KENNZEICHEN,
       "",
       "M-lk 123",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_KGS,
       "",
@@ -108,49 +110,49 @@ export class MainAntagausgesteuert extends Component {
         { label: "Weimar", id: "117755" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_ERSTZULDATUM,
       "",
       "2020-03-03",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_ANMELDEDATUM,
       "",
       "2021-04-04",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_FAHRZEUGZULASSUNG,
       BONamen.K_E_KENNZEICHN_PRUEFEN,
       "",
       "",
       [],
       false,
-      this.setBONeu,
       true
     );
 
     /// KM-Satnd
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTANDSGRUND,
       "7000",
@@ -162,36 +164,35 @@ export class MainAntagausgesteuert extends Component {
         { label: "Antragsmeldung", id: "6" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTANDSDATUM,
       "7000",
       "2021-04-05",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTAND,
       "7000",
       "1122",
       [],
       false,
-      this.setBONeu,
       false
     );
-
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTANDSGRUND,
       "7001",
@@ -203,76 +204,143 @@ export class MainAntagausgesteuert extends Component {
         { label: "Antragsmeldung", id: "6" },
       ],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTANDSDATUM,
       "7001",
       "2021-04-15",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    hinzuBOContainer(
+    lContainer = aktualisiereBOContainer(
       lContainer,
+      BOAktion.ADD,
       BONamen.K_GR_KILOMETERSTANDSANGABEN,
       BONamen.K_E_KILOMETERSTAND,
       "7001",
       "11221",
       [],
       false,
-      this.setBONeu,
       false
     );
 
-    this.setState({ BoContainer: lContainer });
-  }
-
-  setBONeu(grname, name, zeilenid, value) {
-    let BoContainer_neu = [...this.state.BoContainer];
-
-    const itemIndex = BoContainer_neu.findIndex(
-      (item) =>
-        item.grname === grname &&
-        item.name === name &&
-        item.zeilenid === zeilenid
+    /// Zubehör
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUBEHOERART,
+      "7000",
+      "333",
+      [
+        { label: "Bitte wählen", id: "000" },
+        { label: "Info-Nav-Systen", id: "274" },
+        { label: "Soundsystem", id: "333" },
+        { label: "parkdistance control", id: "444" },
+      ],
+      false,
+      false
     );
 
-    if (itemIndex > -1) {
-      const BOEinzelNeu = new BOEinzeln(
-        BoContainer_neu[itemIndex].grname,
-        BoContainer_neu[itemIndex].name,
-        BoContainer_neu[itemIndex].zeilenid,
-        value,
-        BoContainer_neu[itemIndex].options,
-        BoContainer_neu[itemIndex].disabled,
-        BoContainer_neu[itemIndex].setBONeu,
-        BoContainer_neu[itemIndex].janein
-      );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_ZUSCHLAGSPFLICHTIG,
+      "7000",
+      "",
+      [],
+      false,
+      true
+    );
 
-      if (BoContainer_neu[itemIndex].janein === true) {
-        if (BoContainer_neu[itemIndex].value === "on") {
-          BOEinzelNeu.value = "off";
-          BOEinzelNeu.eingabe_value = "off";
-        } else {
-          BOEinzelNeu.value = "on";
-          BOEinzelNeu.eingabe_value = "on";
-        }
-      } else {
-        BOEinzelNeu.value = value;
-        BOEinzelNeu.eingabe_value = value;
-      }
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_HERSTELLER,
+      "7000",
+      "Boose",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_WERT,
+      "7000",
+      "4900",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUBEHOERART,
+      "7001",
+      "444",
+      [
+        { label: "Bitte wählen", id: "000" },
+        { label: "Info-Nav-Systen", id: "274" },
+        { label: "Soundsystem", id: "333" },
+        { label: "parkdistance control", id: "444" },
+      ],
+      false,
+      false
+    );
 
-      BoContainer_neu[itemIndex] = BOEinzelNeu;
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_ZUSCHLAGSPFLICHTIG,
+      "7001",
+      "J",
+      [],
+      false,
+      true
+    );
 
-      this.setState({ BoContainer: BoContainer_neu });
-    }
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_HERSTELLER,
+      "7001",
+      "MrAbstand",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_ZUHEHOER,
+      BONamen.K_E_ZUHEHOER_WERT,
+      "7001",
+      "1200",
+      [],
+      false,
+      false
+    );
+
+    // jetzt in state
+    this.setBOContainerNeuInState(lContainer);
+  }
+
+  setBOContainerNeuInState(BoContainer_neu) {
+    this.setState({ BoContainer: BoContainer_neu });
   }
 
   render() {
@@ -285,18 +353,28 @@ export class MainAntagausgesteuert extends Component {
             <MCMotorFahrzeugdaten
               BoContainer={this.state.BoContainer}
               grname={BONamen.K_GR_FAHRZEUGDATEN}
+              setBOContainerNeuInState={this.setBOContainerNeuInState}
             />
           </Row>
           <Row>
             <MCMotorFahrzeugzulassung
               BoContainer={this.state.BoContainer}
               grname={BONamen.K_GR_FAHRZEUGZULASSUNG}
+              setBOContainerNeuInState={this.setBOContainerNeuInState}
             />
           </Row>
           <Row>
             <SGMotorKilometerstand
               BoContainer={this.state.BoContainer}
               grname={BONamen.K_GR_KILOMETERSTANDSANGABEN}
+              setBOContainerNeuInState={this.setBOContainerNeuInState}
+            />
+          </Row>
+          <Row>
+            <SGMotorZubehoer
+              BoContainer={this.state.BoContainer}
+              grname={BONamen.K_GR_ZUHEHOER}
+              setBOContainerNeuInState={this.setBOContainerNeuInState}
             />
           </Row>
         </Container>

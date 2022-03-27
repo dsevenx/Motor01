@@ -1,6 +1,8 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import lieferElementBOContainer from "../BOs/lieferElementBOContainer";
+import aktualisiereBOContainer from "../BOs/aktualisiereBOContainer";
+import BOAktion from "../BOs/BOAktion";
 
 export default function MotorDate(props) {
   if (props && props.container && props.name && props.grname) {
@@ -23,7 +25,16 @@ export default function MotorDate(props) {
           id={lID}
           label={lBO.name}
           onChange={(event) => {
-            lBO.setValue(event.target.value);
+            let lContainerNeu = aktualisiereBOContainer(
+              props.container,
+              BOAktion.UPDATE,
+              props.grname,
+              props.name,
+              lZeilenID,
+              event.target.value
+            );
+
+            props.setBOContainerNeuInState(lContainerNeu);
           }}
           type="date"
           defaultValue={lBO.value}

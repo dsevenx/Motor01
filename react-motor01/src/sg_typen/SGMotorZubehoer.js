@@ -9,16 +9,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
-import MotorComboBox from "./../basis_typen/MotorComboBox";
-import MotorTextField from "./../basis_typen/MotorTextField";
-import MotorDate from "../basis_typen/MotorDate";
+import MotorComboBox from "../basis_typen/MotorComboBox";
+import MotorTextField from "../basis_typen/MotorTextField";
+import MotorCheckBox from "../basis_typen/MotorCheckBox";
 
 import BONamen from "../BOs/BONamen";
 import lieferElementBOContainerSG from "../BOs/lieferElementBOContainerSG";
 import lieferElementBOContainerSGZeilenID from "../BOs/lieferElementBOContainerSGZeilenID";
+import loescheElementeBOContainer from "../BOs/loescheElementeBOContainer";
 
-export class SGMotorKilometerstand extends React.Component {
+export class SGMotorZubehoer extends React.Component {
   render() {
     if (this.props && this.props.BoContainer && this.props.grname) {
       const lBOs = lieferElementBOContainerSG(
@@ -38,13 +40,11 @@ export class SGMotorKilometerstand extends React.Component {
                   <Table sx={{ minWidth: 900 }}>
                     <TableHead>
                       <TableRow>
-                        <TableCell align="center">Angabegrund</TableCell>
-                        <TableCell align="center">
-                          Datum des Kilometestands
-                        </TableCell>
-                        <TableCell align="center">
-                          Kilometerstandswert
-                        </TableCell>
+                        <TableCell align="center">Art des Zubehörs</TableCell>
+                        <TableCell align="center">zuschlagspflichtig</TableCell>
+                        <TableCell align="center">Hersteller</TableCell>
+                        <TableCell align="center">Wert in EUR</TableCell>
+                        <TableCell align="center">Optionen</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -55,11 +55,15 @@ export class SGMotorKilometerstand extends React.Component {
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <TableCell component="th" scope="row">
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            key={lEineZeilenID}
+                          >
                             <MotorComboBox
                               container={this.props.BoContainer}
                               grname={this.props.grname}
-                              name={BONamen.K_E_KILOMETERSTANDSGRUND}
+                              name={BONamen.K_E_ZUBEHOERART}
                               zeilenid={lEineZeilenID.zeilenid}
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
@@ -68,10 +72,10 @@ export class SGMotorKilometerstand extends React.Component {
                           </TableCell>
                           <TableCell align="right">
                             {" "}
-                            <MotorDate
+                            <MotorCheckBox
                               container={this.props.BoContainer}
                               grname={this.props.grname}
-                              name={BONamen.K_E_KILOMETERSTANDSDATUM}
+                              name={BONamen.K_E_ZUHEHOER_ZUSCHLAGSPFLICHTIG}
                               zeilenid={lEineZeilenID.zeilenid}
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
@@ -82,18 +86,44 @@ export class SGMotorKilometerstand extends React.Component {
                             <MotorTextField
                               container={this.props.BoContainer}
                               grname={this.props.grname}
-                              name={BONamen.K_E_KILOMETERSTAND}
+                              name={BONamen.K_E_ZUHEHOER_HERSTELLER}
                               zeilenid={lEineZeilenID.zeilenid}
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
                             />
                           </TableCell>
+                          <TableCell align="right">
+                            <MotorTextField
+                              container={this.props.BoContainer}
+                              grname={this.props.grname}
+                              name={BONamen.K_E_ZUHEHOER_WERT}
+                              zeilenid={lEineZeilenID.zeilenid}
+                              setBOContainerNeuInState={
+                                this.props.setBOContainerNeuInState
+                              }
+                            />
+                          </TableCell>
+                          <TableCell align="right">
+                            <Button
+                              onClick={() => {
+                                loescheElementeBOContainer(
+                                  this.props.BoContainer,
+                                  this.props.grname,
+                                  lEineZeilenID.zeilenid,
+                                  this.props.setBOContainerNeuInState
+                                );
+                              }}
+                            >
+                              Löschen
+                            </Button>
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
+                <Button variant="contained">ein Zubehör hinzufügen</Button>
               </Grid>
             </Grid>
           </Box>
@@ -101,8 +131,8 @@ export class SGMotorKilometerstand extends React.Component {
       }
     }
 
-    return <div>Kilometerstand kommt noch</div>;
+    return <div>Zubehör kommt noch</div>;
   }
 }
 
-export default SGMotorKilometerstand;
+export default SGMotorZubehoer;

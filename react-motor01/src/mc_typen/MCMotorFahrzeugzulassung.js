@@ -22,6 +22,7 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_AMTL_KENNZEICHEN}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -29,6 +30,7 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_KGS}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -36,6 +38,7 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_KENNZEICHN_PRUEFEN}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}></Grid>
@@ -44,6 +47,7 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_ANMELDEDATUM}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
             <Grid item xs={6}>
@@ -51,6 +55,7 @@ export class MCMotorFahrzeugzulassung extends React.Component {
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_ERSTZULDATUM}
+                setBOContainerNeuInState={this.props.setBOContainerNeuInState}
               />
             </Grid>
           </Grid>
