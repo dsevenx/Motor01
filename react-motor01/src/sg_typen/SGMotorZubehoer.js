@@ -16,11 +16,20 @@ import MotorTextField from "../basis_typen/MotorTextField";
 import MotorCheckBox from "../basis_typen/MotorCheckBox";
 
 import BONamen from "../BOs/BONamen";
+import BOAktion from "../BOs/BOAktion";
 import lieferElementBOContainerSG from "../BOs/lieferElementBOContainerSG";
 import lieferElementBOContainerSGZeilenID from "../BOs/lieferElementBOContainerSGZeilenID";
 import loescheElementeBOContainer from "../BOs/loescheElementeBOContainer";
+import lieferFreienZeilenIDBOContainer from "../BOs/lieferFreienZeilenIDBOContainer";
+import aktualisiereBOContainer from "../BOs/aktualisiereBOContainer";
 
 export class SGMotorZubehoer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.hinzufuegenZubehoerzeile = this.hinzufuegenZubehoerzeile.bind(this);
+  }
+
   render() {
     if (this.props && this.props.BoContainer && this.props.grname) {
       const lBOs = lieferElementBOContainerSG(
@@ -120,7 +129,12 @@ export class SGMotorZubehoer extends React.Component {
                           </TableCell>
                         </TableRow>
                       ))}
-                      <Button variant="contained">
+                      <Button
+                        variant="contained"
+                        onClick={() => {
+                          this.hinzufuegenZubehoerzeile();
+                        }}
+                      >
                         ein Zubehör hinzufügen
                       </Button>
                     </TableBody>
@@ -134,6 +148,67 @@ export class SGMotorZubehoer extends React.Component {
     }
 
     return <div>Zubehör kommt noch</div>;
+  }
+
+  hinzufuegenZubehoerzeile() {
+    let lNeueZeilenID = lieferFreienZeilenIDBOContainer(
+      this.props.BoContainer,
+      this.props.grname
+    );
+
+    let lContainerNeu = aktualisiereBOContainer(
+      this.props.BoContainer,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_ZUBEHOERART,
+      lNeueZeilenID,
+      "000",
+      [
+        { label: "Bitte wählen", id: "000" },
+        { label: "Info-Nav-Systen", id: "274" },
+        { label: "Soundsystem", id: "333" },
+        { label: "parkdistance control", id: "444" },
+      ],
+      false,
+      false
+    );
+
+    lContainerNeu = aktualisiereBOContainer(
+      lContainerNeu,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_ZUHEHOER_ZUSCHLAGSPFLICHTIG,
+      lNeueZeilenID,
+      "",
+      [],
+      false,
+      true
+    );
+
+    lContainerNeu = aktualisiereBOContainer(
+      lContainerNeu,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_ZUHEHOER_HERSTELLER,
+      lNeueZeilenID,
+      "",
+      [],
+      false,
+      false
+    );
+    lContainerNeu = aktualisiereBOContainer(
+      lContainerNeu,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_ZUHEHOER_WERT,
+      lNeueZeilenID,
+      "0",
+      [],
+      false,
+      false
+    );
+
+    this.props.setBOContainerNeuInState(lContainerNeu);
   }
 }
 

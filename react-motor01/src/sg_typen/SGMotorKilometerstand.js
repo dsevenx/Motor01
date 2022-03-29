@@ -9,16 +9,29 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 import MotorComboBox from "./../basis_typen/MotorComboBox";
 import MotorTextField from "./../basis_typen/MotorTextField";
 import MotorDate from "../basis_typen/MotorDate";
 
 import BONamen from "../BOs/BONamen";
+import BOAktion from "../BOs/BOAktion";
+
 import lieferElementBOContainerSG from "../BOs/lieferElementBOContainerSG";
 import lieferElementBOContainerSGZeilenID from "../BOs/lieferElementBOContainerSGZeilenID";
+import loescheElementeBOContainer from "../BOs/loescheElementeBOContainer";
+import lieferFreienZeilenIDBOContainer from "../BOs/lieferFreienZeilenIDBOContainer";
+import aktualisiereBOContainer from "../BOs/aktualisiereBOContainer";
 
 export class SGMotorKilometerstand extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.hinzufuegenKilometerstandzeile = this.hinzufuegenKilometerstandzeile.bind(
+      this
+    );
+  }
   render() {
     if (this.props && this.props.BoContainer && this.props.grname) {
       const lBOs = lieferElementBOContainerSG(
@@ -45,6 +58,7 @@ export class SGMotorKilometerstand extends React.Component {
                         <TableCell align="center">
                           Kilometerstandswert
                         </TableCell>
+                        <TableCell align="center">Optionen</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -89,8 +103,30 @@ export class SGMotorKilometerstand extends React.Component {
                               }
                             />
                           </TableCell>
+                          <TableCell align="right">
+                            <Button
+                              onClick={() => {
+                                loescheElementeBOContainer(
+                                  this.props.BoContainer,
+                                  this.props.grname,
+                                  lEineZeilenID.zeilenid,
+                                  this.props.setBOContainerNeuInState
+                                );
+                              }}
+                            >
+                              Löschen
+                            </Button>
+                          </TableCell>
                         </TableRow>
                       ))}
+                      <Button
+                        variant="contained"
+                        onClick={() => {
+                          this.hinzufuegenKilometerstandzeile();
+                        }}
+                      >
+                        ein Kilometerstand hinzufügen
+                      </Button>
                     </TableBody>
                   </Table>
                 </TableContainer>
@@ -102,6 +138,56 @@ export class SGMotorKilometerstand extends React.Component {
     }
 
     return <div>Kilometerstand kommt noch</div>;
+  }
+
+  hinzufuegenKilometerstandzeile() {
+    let lNeueZeilenID = lieferFreienZeilenIDBOContainer(
+      this.props.BoContainer,
+      this.props.grname
+    );
+
+    let lContainerNeu = aktualisiereBOContainer(
+      this.props.BoContainer,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_KILOMETERSTANDSGRUND,
+      lNeueZeilenID,
+      "0",
+      [
+        { label: "Bitte wählen", id: "0" },
+        { label: "Versicherungsbeginn", id: "1" },
+        { label: "KM-Meldung", id: "2" },
+        { label: "Antragsmeldung", id: "6" },
+      ],
+      false,
+      false
+    );
+
+    lContainerNeu = aktualisiereBOContainer(
+      lContainerNeu,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_KILOMETERSTANDSDATUM,
+      lNeueZeilenID,
+      "",
+      [],
+      false,
+      false
+    );
+
+    lContainerNeu = aktualisiereBOContainer(
+      lContainerNeu,
+      BOAktion.ADD,
+      this.props.grname,
+      BONamen.K_E_KILOMETERSTAND,
+      lNeueZeilenID,
+      "",
+      [],
+      false,
+      false
+    );
+
+    this.props.setBOContainerNeuInState(lContainerNeu);
   }
 }
 
