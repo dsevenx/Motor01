@@ -10,6 +10,7 @@ import { Container, Row } from "react-bootstrap";
 import BONamen from "./BOs/BONamen";
 import BOAktion from "./BOs/BOAktion";
 import ShowContainer from "./mc_typen/ShowContainer";
+import SGMotorFehlermeldung from "./sg_typen/SGMotorFehlermeldung";
 
 export class MainAntagausgesteuert extends Component {
   constructor(props) {
@@ -335,6 +336,74 @@ export class MainAntagausgesteuert extends Component {
       false
     );
 
+    /// Fehlermeldung
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_ART,
+      "7000",
+      "Fehler",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_ID,
+      "7000",
+      "PABS0280",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_TEXT,
+      "7000",
+      "Schön leichter Fehler",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_ART,
+      "7001",
+      "Hinweis",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_ID,
+      "7001",
+      "PABS0333",
+      [],
+      false,
+      false
+    );
+    lContainer = aktualisiereBOContainer(
+      lContainer,
+      BOAktion.ADD,
+      BONamen.K_GR_FEHLER_HINWEISE,
+      BONamen.K_E_FEHLER_TEXT,
+      "7001",
+      "bereits Vertrag mit gleichen Kennzeichen vorhanden (AS-1234567890)",
+      [],
+      false,
+      false
+    );
+
     // jetzt in state
     this.setBOContainerNeuInState(lContainer);
   }
@@ -349,6 +418,13 @@ export class MainAntagausgesteuert extends Component {
         <MotorAppBar></MotorAppBar>
         {this.state.LastUpdateElement}
         <Container fluid>
+          <Row>
+            <SGMotorFehlermeldung
+              BoContainer={this.state.BoContainer}
+              grname={BONamen.K_GR_FEHLER_HINWEISE}
+              setBOContainerNeuInState={this.setBOContainerNeuInState}
+            />
+          </Row>
           <Row>
             <MCMotorFahrzeugdaten
               BoContainer={this.state.BoContainer}
