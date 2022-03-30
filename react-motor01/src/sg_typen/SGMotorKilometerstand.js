@@ -46,7 +46,7 @@ export class SGMotorKilometerstand extends React.Component {
           <Box sx={{ flexGrow: 1 }}>
             {this.props.grname}
             <Grid container spacing={2}>
-              <Grid item xs={9}>
+              <Grid item xs={12}>
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 900 }}>
                     <TableHead>
@@ -69,7 +69,7 @@ export class SGMotorKilometerstand extends React.Component {
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <TableCell component="th" scope="row">
+                          <TableCell component="th" scope="row" align="center">
                             <MotorComboBox
                               container={this.props.BoContainer}
                               grname={this.props.grname}
@@ -78,9 +78,10 @@ export class SGMotorKilometerstand extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={300}
                             />
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align="center">
                             {" "}
                             <MotorDate
                               container={this.props.BoContainer}
@@ -90,9 +91,10 @@ export class SGMotorKilometerstand extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={100}
                             />
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align="center">
                             <MotorTextField
                               container={this.props.BoContainer}
                               grname={this.props.grname}
@@ -101,9 +103,10 @@ export class SGMotorKilometerstand extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={100}
                             />
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align="center">
                             <Button
                               onClick={() => {
                                 loescheElementeBOContainer(
@@ -119,16 +122,16 @@ export class SGMotorKilometerstand extends React.Component {
                           </TableCell>
                         </TableRow>
                       ))}
-                      <Button
-                        variant="contained"
-                        onClick={() => {
-                          this.hinzufuegenKilometerstandzeile();
-                        }}
-                      >
-                        ein Kilometerstand hinzufügen
-                      </Button>
                     </TableBody>
                   </Table>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      this.hinzufuegenKilometerstandzeile();
+                    }}
+                  >
+                    ein Kilometerstand hinzufügen
+                  </Button>
                 </TableContainer>
               </Grid>
             </Grid>

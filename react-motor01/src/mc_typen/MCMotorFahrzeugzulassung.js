@@ -17,45 +17,49 @@ export class MCMotorFahrzeugzulassung extends React.Component {
         <Box sx={{ flexGrow: 1 }}>
           Fahrzeugzulassung
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <MotorTextField
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_AMTL_KENNZEICHEN}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={200}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <MotorComboBox
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_KGS}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={200}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <MotorCheckBox
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_KENNZEICHN_PRUEFEN}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={200}
               />
             </Grid>
-            <Grid item xs={6}></Grid>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <MotorDate
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_ANMELDEDATUM}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={200}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <MotorDate
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_ERSTZULDATUM}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={200}
               />
             </Grid>
           </Grid>

@@ -32,7 +32,7 @@ export class SGMotorFehlermeldung extends React.Component {
           <Box sx={{ flexGrow: 1 }}>
             {this.props.grname}
             <Grid container spacing={2}>
-              <Grid item xs={9}>
+              <Grid item xs={12}>
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 900 }}>
                     <TableHead>
@@ -50,7 +50,7 @@ export class SGMotorFehlermeldung extends React.Component {
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <TableCell align="right">
+                          <TableCell align="center">
                             <MotorTextField
                               container={this.props.BoContainer}
                               grname={this.props.grname}
@@ -60,10 +60,11 @@ export class SGMotorFehlermeldung extends React.Component {
                                 this.props.setBOContainerNeuInState
                               }
                               disabeld="true"
+                              breite={100}
                             />
                           </TableCell>
 
-                          <TableCell align="right">
+                          <TableCell align="center">
                             <MotorTextField
                               container={this.props.BoContainer}
                               grname={this.props.grname}
@@ -73,9 +74,10 @@ export class SGMotorFehlermeldung extends React.Component {
                                 this.props.setBOContainerNeuInState
                               }
                               disabeld="true"
+                              breite={150}
                             />
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align="center">
                             <MotorTextField
                               container={this.props.BoContainer}
                               grname={this.props.grname}
@@ -85,6 +87,7 @@ export class SGMotorFehlermeldung extends React.Component {
                                 this.props.setBOContainerNeuInState
                               }
                               disabeld="true"
+                              breite={900}
                             />
                           </TableCell>
                         </TableRow>

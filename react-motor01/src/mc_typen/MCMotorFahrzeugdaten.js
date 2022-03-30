@@ -15,36 +15,40 @@ export class MCMotorFahrzeugdaten extends React.Component {
         <Box sx={{ flexGrow: 1 }}>
           {this.props.grname}
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={3}>
               <MotorComboBox
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGART}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={300}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={3}>
               <MotorComboBox
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FAHRZEUGVERWENDUNG}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={300}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={3}>
               <MotorComboBox
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_HSN}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={300}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={3}>
               <MotorTextField
                 container={this.props.BoContainer}
                 grname={this.props.grname}
                 name={BONamen.K_E_FIN}
                 setBOContainerNeuInState={this.props.setBOContainerNeuInState}
+                breite={300}
               />
             </Grid>
           </Grid>

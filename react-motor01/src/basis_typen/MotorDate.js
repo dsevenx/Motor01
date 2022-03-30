@@ -38,7 +38,7 @@ export default function MotorDate(props) {
           }}
           type="date"
           defaultValue={lBO.value}
-          sx={{ width: 300 }}
+          sx={{ width: props.breite }}
           InputLabelProps={{
             shrink: true,
           }}

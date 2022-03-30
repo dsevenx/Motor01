@@ -24,7 +24,7 @@ export default function MotorTextField(props) {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { width: 300 },
+            "& > :not(style)": { width: props.breite },
           }}
           noValidate
           autoComplete="off"
@@ -34,6 +34,9 @@ export default function MotorTextField(props) {
             label={lBO.name}
             variant="outlined"
             defaultValue={lBO.value}
+            style={{
+              width: props.breite,
+            }}
             onChange={(event) => {
               let lContainerNeu = aktualisiereBOContainer(
                 props.container,

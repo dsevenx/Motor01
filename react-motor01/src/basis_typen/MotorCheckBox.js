@@ -24,7 +24,7 @@ export default function MotorCheckBox(props) {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { width: 100 },
+            "& > :not(style)": { width: props.breite },
           }}
           noValidate
           autoComplete="off"

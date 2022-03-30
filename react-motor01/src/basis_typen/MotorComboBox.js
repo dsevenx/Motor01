@@ -48,7 +48,9 @@ export default function MotorComboBox(props) {
             props.setBOContainerNeuInState(lContainerNeu);
           }}
           options={lBO.getOptions()}
-          sx={{ width: 300 }}
+          sx={{
+            "& > :not(style)": { width: props.breite },
+          }}
           renderInput={(params) => <TextField {...params} label={lBO.name} />}
         />
       );

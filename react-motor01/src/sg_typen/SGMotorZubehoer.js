@@ -77,6 +77,7 @@ export class SGMotorZubehoer extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={200}
                             />
                           </TableCell>
                           <TableCell align="right">
@@ -89,6 +90,7 @@ export class SGMotorZubehoer extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={100}
                             />
                           </TableCell>
                           <TableCell align="right">
@@ -100,6 +102,7 @@ export class SGMotorZubehoer extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={200}
                             />
                           </TableCell>
                           <TableCell align="right">
@@ -111,6 +114,7 @@ export class SGMotorZubehoer extends React.Component {
                               setBOContainerNeuInState={
                                 this.props.setBOContainerNeuInState
                               }
+                              breite={100}
                             />
                           </TableCell>
                           <TableCell align="right">
@@ -129,16 +133,16 @@ export class SGMotorZubehoer extends React.Component {
                           </TableCell>
                         </TableRow>
                       ))}
-                      <Button
-                        variant="contained"
-                        onClick={() => {
-                          this.hinzufuegenZubehoerzeile();
-                        }}
-                      >
-                        ein Zubehör hinzufügen
-                      </Button>
                     </TableBody>
                   </Table>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      this.hinzufuegenZubehoerzeile();
+                    }}
+                  >
+                    ein Zubehör hinzufügen
+                  </Button>
                 </TableContainer>
               </Grid>
             </Grid>
